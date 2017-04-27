@@ -49,10 +49,29 @@ function SearchProviderData(param) {
             "$$app_token": "JgkCcCOlw68sFAFt1hYlanhZR"
         }
     }).done(function (result) {
-        if (result.length == 0)
-            toastr.info('Total records found: ' + result.length);
-        else
+        var table = $("#resultTable")
+               .dataTable({
+                   bDestroy: true,
+                   searching: false,
+                   data: result,
+                   columns: [
+                       { data: "federal_provider_number" },
+                       { data: "provider_name" },
+                       { data: "provider_address" },
+                       { data: "provider_city" },
+                       { data: "provider_state" },
+                       { data: "provider_zip_code" },
+                       { data: "provider_phone_number" }
+                   ]
+               });
+
+        if (result.length === 0) {
+            $('#divResult').hide();
+            toastr.error('Sorry no records found. Please refine search criteria.');
+        } else {
+            $('#divResult').show();
             toastr.success('Total records found: ' + result.length);
+        }
     });
 }
 
