@@ -1,46 +1,57 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ProviderInfo.Web.SiteMaster" %>
 
+<%@ Import Namespace="ProviderInfo.Web" %>
+
 <!DOCTYPE html>
 
 <html lang="en">
 <head runat="server">
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - Medicare Provider Info</title>
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
         <%: Scripts.Render("~/bundles/CustomScripts") %>
     </asp:PlaceHolder>
-    <webopt:BundleReference runat="server" Path="~/Content/css"/>
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 </head>
 <body>
-<form runat="server">
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" runat="server" href="~/">Medicare Provider Info Search</a>
+    <form runat="server">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" runat="server" href="~/">Medicare Provider Info Search</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
+        </div>
+        <div class="container body-content">
+            <div class="jumbotron">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %></p>
+            </footer>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                AppConfig = {
+                    ProviderServiceUrl: '<%= CustomConfig.ProviderServiceUrl %>',
+                    AppToken: '<%= CustomConfig.AppToken %>'
+             };
+        });
+        </script>
 
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        <div class="jumbotron">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
-        <hr/>
-        <footer>
-            <p>&copy; <%: DateTime.Now.Year %></p>
-        </footer>
-    </div>
-</form>
+
+    </form>
 </body>
 </html>

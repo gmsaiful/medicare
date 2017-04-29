@@ -1,4 +1,5 @@
-﻿
+﻿var AppConfig;
+
 toastr.options.preventDuplicates = true;
 toastr.options.positionClass = "toast-bottom-full-width";
 
@@ -7,26 +8,12 @@ function SearchClick() {
     var name = $('#txtName').val();
     var zip = $('#txtZip').val();
 
-    var params = BuildWhereSearchParameters(num, name, zip);
+    var params = BuildWhereClause(num, name, zip);
     SearchProviderData(params);
     return false;
 }
-/*
-function BuildSearchParameters(num, name, zip) {
-    var params = '';
-    if (num.length > 0)
-        params = 'federal_provider_number=' + num;
-    if (name.length > 0)
-        params += '&provider_name=' + name;
-    if (zip.length > 0)
-        params += '&provider_zip_code=' + zip;
 
-    if (params.startsWith('&'))
-        params = params.substring(1);
-    return params;
-}*/
-
-function BuildWhereSearchParameters(num, name, zip) {
+function BuildWhereClause(num, name, zip) {
     var params = '';
     if (num.length > 0)
         params = "federal_provider_number LIKE '%25" + num + "%25'";
@@ -42,11 +29,11 @@ function BuildWhereSearchParameters(num, name, zip) {
 
 function SearchProviderData(param) {
     $.ajax({
-        url: "https://data.medicare.gov/resource/b27b-2uc7.json" + "?" + param,
+        url: AppConfig.ProviderServiceUrl + "?" + param,
         type: "GET",
         data: {
             "$limit": 5000,
-            "$$app_token": "JgkCcCOlw68sFAFt1hYlanhZR"
+            "$$app_token": AppConfig.AppToken
         }
     }).done(function (result) {
         var table = $("#resultTable")
@@ -74,4 +61,3 @@ function SearchProviderData(param) {
         }
     });
 }
-

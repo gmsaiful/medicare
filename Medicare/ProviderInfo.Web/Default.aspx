@@ -33,25 +33,25 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-5 col-md-6">
-                        <input type="button" id="btnSearch" value="Search" CssClass="btn btn-default" onclick="return SearchClick();"  />
+                        <input type="button" id="btnSearch" value="Search" cssclass="btn btn-default" onclick="return SearchClick();" />
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <asp:Label ID="lblCount" ClientIDMode="Static" runat="server" CssClass="control-label"></asp:Label>
                     </div>
                 </div>
             </div>
         </div>
-       <div id="divResult" class="col-md-12" style="display: none;">
+        <div id="divResult" class="col-md-12" style="display: none;">
             <table id="resultTable" class="table table-striped table-bordered table-hover table-condensed">
                 <thead>
-                <tr>
-                    <th>Number</th>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>City</th>
-                    <th>State</th>
-                    <th>Zip</th>
-                    <th>Phone</th>
-                </tr>
+                    <tr>
+                        <th>Number</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Zip</th>
+                        <th>Phone</th>
+                    </tr>
                 </thead>
             </table>
         </div>
